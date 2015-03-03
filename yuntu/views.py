@@ -18,3 +18,8 @@ def index(request):
     }
 
     return render(request, 'yuntu/index.html', context)
+
+
+def why_choose_yuntu(request):
+    context = {}
+    return render(request, 'yuntu/why_choose_yuntu.html', context)

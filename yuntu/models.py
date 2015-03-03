@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class Index(models.Model):
     master_title = models.CharField(max_length=50)
