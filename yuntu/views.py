@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Index
+from .models import Index, FeatureMatrix
 
 
 def index(request):
@@ -21,5 +21,9 @@ def index(request):
 
 
 def why_choose_yuntu(request):
-    context = {}
+    feature_matrix_list = FeatureMatrix.objects.all()
+    context = {
+        'matrix_heads': feature_matrix_list[0],
+        'feature_matrix_list': feature_matrix_list[1:]
+    }
     return render(request, 'yuntu/why_choose_yuntu.html', context)

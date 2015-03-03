@@ -10,3 +10,21 @@ class Index(models.Model):
 
     def __unicode__(self):
         return self.master_title
+
+
+class FeatureMatrix(models.Model):
+    feature_name = models.CharField(max_length=200)
+    yuntu_app = models.CharField(max_length=100)
+    replay_app = models.CharField(max_length=100)
+    meipai_app = models.CharField(max_length=100)
+    weishi_app = models.CharField(max_length=100)
+    xiaoying_app = models.CharField(max_length=100)
+    imovie_app = models.CharField(max_length=100)
+    hyperlapse_app = models.CharField(max_length=100)
+    weipai_app = models.CharField(max_length=100)
+    wopai_app = models.CharField(max_length=100)
+    yowo_app = models.CharField(max_length=100)
+    musemage_app = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.feature_name

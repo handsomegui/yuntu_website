@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Index
+from .models import Index, FeatureMatrix
 
-# Register your models here.
 
 admin.site.register(Index)
+admin.site.register(FeatureMatrix)
