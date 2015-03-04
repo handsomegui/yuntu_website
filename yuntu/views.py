@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from .models import Index, FeatureMatrix
+from .models import Index, FeatureMatrix, SubscribedEmail
 from .forms import SubcriptionForm
 
 
@@ -38,5 +38,12 @@ def subscribe(request):
         if form.is_valid():
             email_data = form.cleaned_data
             email_address = email_data['email_address']
+
+            subscription_email = SubscribedEmail.objects.all()
+            registered_email = [se.subscribed_email_address for se in subscription_email if se.subscribed_email_address]
+            if email_address not in registered_email:
+                e = SubscribedEmail(subscribed_email_address=email_address)
+                e.save()
+
             context = {'email_address': email_address}
             return render(request, 'yuntu/subscribtion.html', context)
