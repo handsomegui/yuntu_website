@@ -28,3 +28,9 @@ class FeatureMatrix(models.Model):
 
     def __unicode__(self):
         return self.feature_name
+
+
+class SubscribedEmail(models.Model):
+    subscribed_email_address = models.EmailField(null=False, blank=False)
+    subscribed_date_time = models.DateTimeField(auto_now_add=True)
+    notified = models.BooleanField(default=False)

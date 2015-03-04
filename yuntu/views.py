@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from .models import Index, FeatureMatrix
+from .forms import SubcriptionForm
 
 
 def index(request):
@@ -27,3 +29,14 @@ def why_choose_yuntu(request):
         'feature_matrix_list': feature_matrix_list[1:]
     }
     return render(request, 'yuntu/why_choose_yuntu.html', context)
+
+
+@csrf_exempt
+def subscribe(request):
+    if request.method == 'POST':
+        form = SubcriptionForm(request.POST)
+        if form.is_valid():
+            email_data = form.cleaned_data
+            email_address = email_data['email_address']
+            context = {'email_address': email_address}
+            return render(request, 'yuntu/subscribtion.html', context)
