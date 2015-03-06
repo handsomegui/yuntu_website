@@ -1,7 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .models import Index, FeatureMatrix, SubscribedEmail
 from .forms import SubcriptionForm
+from django.http import HttpResponse
 
 
 def index(request):
@@ -41,9 +46,13 @@ def subscribe(request):
 
             subscription_email = SubscribedEmail.objects.all()
             registered_email = [se.subscribed_email_address for se in subscription_email if se.subscribed_email_address]
-            if email_address not in registered_email:
+            if email_address and email_address not in registered_email:
                 e = SubscribedEmail(subscribed_email_address=email_address)
                 e.save()
 
-            context = {'email_address': email_address}
-            return render(request, 'yuntu/subscribtion.html', context)
+                context = {'email_address': email_address}
+                return render(request, 'yuntu/subscribtion.html', context)
+            else:
+                return HttpResponse(u'亲，您神马都木有填吧？请返回重新填写吧:)')
+        else:
+            return HttpResponse(u'亲，邮件地址格式填的不对吧？返回重填吧:)')
