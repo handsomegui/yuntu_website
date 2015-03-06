@@ -52,6 +52,8 @@ def subscribe(request):
 
                 context = {'email_address': email_address}
                 return render(request, 'yuntu/subscribtion.html', context)
+            elif email_address in registered_email:
+                return HttpResponse(u'亲，您之前已经订阅过了，等消息就行:)')
             else:
                 return HttpResponse(u'亲，您神马都木有填吧？请返回重新填写吧:)')
         else:
