@@ -16,12 +16,15 @@ def index(request):
     contact_us_address = Index.objects.get(pk=1).contact_us_address
     contact_us_email = Index.objects.get(pk=1).contact_us_email
 
+    form = SubcriptionForm()
+
     context = {
         'master_title': master_title,
         'slave_title': slave_title,
         'about_us_string': about_us_string,
         'contact_us_address': contact_us_address,
-        'contact_us_email': contact_us_email
+        'contact_us_email': contact_us_email,
+        'form': form
     }
 
     return render(request, 'yuntu/index.html', context)

@@ -142,8 +142,9 @@
 					<p>{{ contact_us_email }}</p>
 {#					<p><button type="button" class="btn btn-warning">静候佳讯</button></p>#}
                     <form class="pure-form" action="/yuntu/subscribe/" method="post">
-                    {% csrf_token %}
-                        <input type="email" placeholder="Email" name="email_address">
+                        {% csrf_token %}
+{#                        <input type="email" placeholder="Email" name="email_address">#}
+                        {{ form }}
                         <button type="submit" class="pure-button pure-button-primary" value="Submit">邮件订阅</button>
                     </form>
 				</div>
